@@ -15,4 +15,7 @@ public class LottoController {
         this.outputView = outputView;
         this.lottoService = lottoService;
     }
+
+    public void start() {
+    }
 }
