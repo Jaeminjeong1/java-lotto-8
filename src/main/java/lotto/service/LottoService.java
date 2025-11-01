@@ -2,9 +2,11 @@ package lotto.service;
 
 import lotto.domain.Lotto;
 import lotto.domain.Price;
+import lotto.utils.Parser;
 import lotto.utils.RandomGenerator;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class LottoService {
@@ -20,5 +22,11 @@ public class LottoService {
             lottos.add(Lotto.from(RandomGenerator.generateRandomNum()));
         }
         return lottos;
+    }
+
+    public Lotto generateWinnerLotto(String winnerNumbers) {
+        return Lotto.from(Arrays.stream(Parser.parse(winnerNumbers))
+                .map(Integer::parseInt)
+                .toList());
     }
 }
