@@ -1,10 +1,19 @@
 package lotto.view;
 
+import lotto.domain.Result;
 import lotto.dto.LottoDto;
 
+import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 
 public class OutputView {
+
+    private static final String WINNING_STATISTICS = "\n당첨 통계";
+    private static final String LINING = "-----------------";
+    private static final String STATISTICS_RESULT = "%d개 일치%s (%d원) - %d개%n";
+    private static final String BONUS_NOT_MATCHED = ", 보너스 볼 일치";
+
 
     private OutputView() {}
     public static OutputView create() {
@@ -19,5 +28,31 @@ public class OutputView {
         }
 
         System.out.println();
+    }
+
+    public void printStatistics(Map<Result, Long> statistics) {
+        printStatisticsStart();
+        printRank(statistics);
+    }
+
+    private static void printRank(Map<Result, Long> statistics) {
+        Arrays.stream(Result.values())
+                .filter(result -> result != Result.MISS) // 꽝 제외
+                .forEach(result -> {
+                    long count = statistics.getOrDefault(result, 0L);
+                    String bonusMessage = "";
+                    if (result.isBonusMatch()) bonusMessage = BONUS_NOT_MATCHED;
+
+                    System.out.printf(STATISTICS_RESULT,
+                            result.getMatchCount(),
+                            bonusMessage,
+                            result.getPrice(),
+                            count);
+                });
+    }
+
+    private void printStatisticsStart() {
+        System.out.println(WINNING_STATISTICS);
+        System.out.println(LINING);
     }
 }
