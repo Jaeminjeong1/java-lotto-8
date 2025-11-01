@@ -10,6 +10,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import static lotto.utils.ErrorMessage.BONUS_NUM_CONTAINS_ERROR;
+
 public class LottoService {
 
     public LottoService() {
@@ -28,16 +30,19 @@ public class LottoService {
         return result;
     }
 
-    public Lotto generateWinnerLotto(String winnerNumbers) {
-        return Lotto.from(Arrays.stream(Parser.parse(winnerNumbers))
+    public LottoDto generateWinnerLotto(String winnerNumbers) {
+        Lotto lotto = Lotto.from(Arrays.stream(Parser.parse(winnerNumbers))
                 .map(String::trim)
                 .map(Integer::parseInt)
                 .toList());
+
+        return lotto.toDto();
     }
 
-    public int validateBonusNum(Lotto winnerLotto, int bonusNumber) {
-        winnerLotto.validateContain(bonusNumber);
-
+    public int validateBonusNum(LottoDto winnerDto, int bonusNumber) {
+        if (winnerDto.numbers().contains(bonusNumber)) {
+            throw new IllegalArgumentException(BONUS_NUM_CONTAINS_ERROR.getMessage());
+        }
         return bonusNumber;
     }
 }
