@@ -3,6 +3,7 @@ package lotto.utils;
 import java.util.regex.Pattern;
 
 import static lotto.utils.ErrorMessage.EMPTY_INPUT_ERROR;
+import static lotto.utils.ErrorMessage.NUMBER_FORMAT_ERROR;
 
 public class Validator {
 
@@ -16,7 +17,7 @@ public class Validator {
 
     public static void validateNumberFormat(String userInput) {
         if (!NUMBER_PATTERN.matcher(userInput).matches()) {
-            throw new IllegalArgumentException(EMPTY_INPUT_ERROR.getMessage());
+            throw new IllegalArgumentException(NUMBER_FORMAT_ERROR.getMessage());
         }
     }
 }
