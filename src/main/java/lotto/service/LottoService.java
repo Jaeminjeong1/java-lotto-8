@@ -13,6 +13,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+import static lotto.domain.LottoPrice.LOTTO_PRICE;
 import static lotto.utils.ErrorMessage.BONUS_NUM_CONTAINS_ERROR;
 
 public class LottoService {
@@ -73,5 +74,15 @@ public class LottoService {
     public Map<Result, Long> summarizeResults(List<Result> results) {
         return results.stream()
                 .collect(Collectors.groupingBy(result -> result, Collectors.counting()));
+    }
+
+    public double calculateProfitRate(Map<Result, Long> statistics, int totalLottoCount) {
+        long totalPrize = statistics.entrySet().stream()
+                .mapToLong(entry -> entry.getKey().getPrice() * entry.getValue()) // 상금 × 개수
+                .sum();
+
+        long totalCost = (long) totalLottoCount * LOTTO_PRICE;
+
+        return (double) totalPrize / totalCost * 100;
     }
 }
