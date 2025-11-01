@@ -29,4 +29,11 @@ public class LottoService {
                 .map(Integer::parseInt)
                 .toList());
     }
+
+    public int validateBonusNum(Lotto winnerLotto, String bonusNum) {
+        int bonusNumber = Integer.parseInt(bonusNum);
+        winnerLotto.validateContain(bonusNumber);
+
+        return bonusNumber;
+    }
 }

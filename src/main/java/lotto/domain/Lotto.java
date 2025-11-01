@@ -2,8 +2,7 @@ package lotto.domain;
 
 import java.util.List;
 
-import static lotto.utils.ErrorMessage.LOTTO_NUM_COUNT_ERROR;
-import static lotto.utils.ErrorMessage.LOTTO_NUM_RANGE_ERROR;
+import static lotto.utils.ErrorMessage.*;
 
 public class Lotto {
 
@@ -36,6 +35,12 @@ public class Lotto {
                 .ifPresent(n -> {
                     throw new IllegalArgumentException(LOTTO_NUM_RANGE_ERROR.getMessage());
                 });
+    }
+
+    public void validateContain(int bonusNumber) {
+        if (numbers.contains(bonusNumber)) {
+            throw new IllegalArgumentException(BONUS_NUM_CONTAINS_ERROR.getMessage());
+        }
     }
 
     // TODO: 추가 기능 구현
