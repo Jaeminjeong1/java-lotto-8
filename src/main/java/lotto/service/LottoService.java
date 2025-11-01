@@ -26,6 +26,7 @@ public class LottoService {
 
     public Lotto generateWinnerLotto(String winnerNumbers) {
         return Lotto.from(Arrays.stream(Parser.parse(winnerNumbers))
+                .map(String::trim)
                 .map(Integer::parseInt)
                 .toList());
     }
