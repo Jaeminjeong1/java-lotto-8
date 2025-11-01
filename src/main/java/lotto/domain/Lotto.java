@@ -1,5 +1,7 @@
 package lotto.domain;
 
+import lotto.dto.LottoDto;
+
 import java.util.List;
 
 import static lotto.utils.ErrorMessage.*;
@@ -45,11 +47,8 @@ public class Lotto {
                 });
     }
 
-    public void validateContain(int bonusNumber) {
-        if (numbers.contains(bonusNumber)) {
-            throw new IllegalArgumentException(BONUS_NUM_CONTAINS_ERROR.getMessage());
-        }
+    public LottoDto toDto() {
+        return new LottoDto(List.copyOf(numbers)); // 불변 복사본 전달
     }
 
-    // TODO: 추가 기능 구현
 }
