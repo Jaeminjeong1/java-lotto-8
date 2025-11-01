@@ -13,10 +13,14 @@ public class Lotto {
 
     private final List<Integer> numbers;
 
-    public Lotto(List<Integer> numbers) {
+    private Lotto(List<Integer> numbers) {
         validateLottoCount(numbers);
         validateNumberRange(numbers);
         this.numbers = numbers;
+    }
+
+    public static Lotto from(List<Integer> numbers) {
+        return new Lotto(numbers);
     }
 
     private void validateLottoCount(List<Integer> numbers) {
