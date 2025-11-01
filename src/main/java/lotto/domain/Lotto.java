@@ -15,6 +15,7 @@ public class Lotto {
     private Lotto(List<Integer> numbers) {
         validateLottoCount(numbers);
         validateNumberRange(numbers);
+        validateDuplication(numbers);
         this.numbers = numbers;
     }
 
@@ -25,6 +26,13 @@ public class Lotto {
     private void validateLottoCount(List<Integer> numbers) {
         if (numbers.size() != LOTTO_NUM_COUNT) {
             throw new IllegalArgumentException(LOTTO_NUM_COUNT_ERROR.getMessage());
+        }
+    }
+
+    private void validateDuplication(List<Integer> numbers) {
+        boolean hasDuplicate = numbers.size() != numbers.stream().distinct().count();
+        if (hasDuplicate) {
+            throw new IllegalArgumentException(DUPLICATE_ERROR_MESSAGE.getMessage());
         }
     }
 
