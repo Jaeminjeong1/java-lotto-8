@@ -34,11 +34,13 @@ public class InputView {
         return userInput;
     }
 
-    public String inputBonusNum() {
+    public int inputBonusNum() {
         System.out.println(BONUS_NUM_INPUT);
         String userInput = Console.readLine();
         validateEmptyInput(userInput);
+        validateNumberFormat(userInput);
 
-        return userInput;
+
+        return Integer.parseInt(userInput);
     }
 }

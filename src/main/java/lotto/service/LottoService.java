@@ -31,8 +31,7 @@ public class LottoService {
                 .toList());
     }
 
-    public int validateBonusNum(Lotto winnerLotto, String bonusNum) {
-        int bonusNumber = Integer.parseInt(bonusNum);
+    public int validateBonusNum(Lotto winnerLotto, int bonusNumber) {
         winnerLotto.validateContain(bonusNumber);
 
         return bonusNumber;
