@@ -17,5 +17,13 @@ public class LottoController {
     }
 
     public void start() {
+        //돈 받기
+        long userPrice = inputView.inputUserPrice();
+        //돈 받은걸 바탕으로 로또 생성
+        lottoService
+        //당첨 번호 받기
+        //보너스 번호 받기
+        //당첨 통계
+        //결과 출력
     }
 }
