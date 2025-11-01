@@ -2,6 +2,7 @@ package lotto.service;
 
 import lotto.domain.Lotto;
 import lotto.domain.Price;
+import lotto.dto.LottoDto;
 import lotto.utils.Parser;
 import lotto.utils.RandomGenerator;
 
@@ -14,14 +15,17 @@ public class LottoService {
     public LottoService() {
     }
 
-    public List<Lotto> lottoGenerate(long userPrice) {
-        List<Lotto> lottos = new ArrayList<>();
+    public List<LottoDto> generateLottos(long userPrice) {
+        List<LottoDto> result = new ArrayList<>();
         long lottoCount = Price.from(userPrice).getLottoCount();
 
         for (int i = 0; i < lottoCount; i++) {
-            lottos.add(Lotto.from(RandomGenerator.generateRandomNum()));
+            List<Integer> numbers = RandomGenerator.generateRandomNum();
+            Lotto lotto = Lotto.from(numbers);
+
+            result.add(new LottoDto(numbers));
         }
-        return lottos;
+        return result;
     }
 
     public Lotto generateWinnerLotto(String winnerNumbers) {
