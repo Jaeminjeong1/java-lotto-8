@@ -13,6 +13,7 @@ public class OutputView {
     private static final String LINING = "-----------------";
     private static final String STATISTICS_RESULT = "%d개 일치%s (%d원) - %d개%n";
     private static final String BONUS_NOT_MATCHED = ", 보너스 볼 일치";
+    private static final String RATE_OF_RETURN_PRINT = "총 수익률은 %.2f%%입니다.%n";
 
 
     private OutputView() {}
@@ -55,4 +56,9 @@ public class OutputView {
         System.out.println(WINNING_STATISTICS);
         System.out.println(LINING);
     }
+
+    public void printProfitRate(double profitRate) {
+        System.out.printf(RATE_OF_RETURN_PRINT, profitRate);
+    }
+
 }
