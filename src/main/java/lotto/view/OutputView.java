@@ -61,4 +61,7 @@ public class OutputView {
         System.out.printf(RATE_OF_RETURN_PRINT, profitRate);
     }
 
+    public void printErrorMessage(IllegalArgumentException e) {
+        System.out.println(e.getMessage());
+    }
 }

@@ -1,8 +1,13 @@
 package lotto.controller;
 
+import lotto.domain.Result;
+import lotto.dto.LottoDto;
 import lotto.service.LottoService;
 import lotto.view.InputView;
 import lotto.view.OutputView;
+
+import java.util.List;
+import java.util.Map;
 
 public class LottoController {
 
@@ -17,13 +22,57 @@ public class LottoController {
     }
 
     public void start() {
-        //돈 받기
-        long userPrice = inputView.inputUserPrice();
-        //돈 받은걸 바탕으로 로또 생성
-        lottoService
-        //당첨 번호 받기
-        //보너스 번호 받기
-        //당첨 통계
-        //결과 출력
+        List<LottoDto> lottos = getUserLottos();
+
+        LottoDto winnerLotto = getWinnerLotto();
+        int bonusNum = getBonusNum(winnerLotto);
+
+        printResult(lottos, winnerLotto, bonusNum);
+    }
+
+    private List<LottoDto> getUserLottos() {
+        while (true) {
+            try {
+                long userPrice = inputView.inputUserPrice();
+
+                List<LottoDto> lottos = lottoService.generateLottos(userPrice);
+                outputView.printLottos(lottos);
+                return lottos;
+            } catch (IllegalArgumentException e) {
+                outputView.printErrorMessage(e);
+            }
+        }
+    }
+
+    private int getBonusNum(LottoDto winnerLotto) {
+        while (true) {
+            try {
+                int bonusNum = inputView.inputBonusNum();
+                return lottoService.validateBonusNum(winnerLotto, bonusNum);
+            } catch (IllegalArgumentException e) {
+                outputView.printErrorMessage(e);
+            }
+        }
+    }
+
+    private LottoDto getWinnerLotto() {
+        while (true) {
+            try {
+                String winnerNumbers = inputView.inputWinnerNum();
+                LottoDto winnerLotto = lottoService.generateWinnerLotto(winnerNumbers);
+                return winnerLotto;
+            } catch (IllegalArgumentException e) {
+                outputView.printErrorMessage(e);
+            }
+        }
+    }
+
+    private void printResult(List<LottoDto> lottos, LottoDto winnerLotto, int bonusNum) {
+        List<Result> results = lottoService.findMatchCount(lottos, winnerLotto, bonusNum);
+        Map<Result, Long> statistics = lottoService.summarizeResults(results);
+
+        double profitRate = lottoService.calculateProfitRate(statistics, lottos.size());
+        outputView.printStatistics(statistics);
+        outputView.printProfitRate(profitRate);
     }
 }
