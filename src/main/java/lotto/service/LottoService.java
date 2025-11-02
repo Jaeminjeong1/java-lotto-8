@@ -50,15 +50,14 @@ public class LottoService {
     }
 
     public List<Result> findMatchCount(List<LottoDto> lottos, LottoDto winnerLotto, int bonusNum) {
+        Lotto winner = Lotto.from(winnerLotto.numbers());
+
         return lottos.stream()
+                .map(dto -> Lotto.from(dto.numbers()))
                 .map(lotto -> {
-                    long matchCount = lotto.numbers().stream()
-                            .filter(winnerLotto.numbers()::contains)
-                            .count();
-
-                    boolean bonusMatch = lotto.numbers().contains(bonusNum);
-
-                    return findResult((int) matchCount, bonusMatch);
+                    int match = lotto.matchCountWith(winner);
+                    boolean bonus = lotto.contains(bonusNum);
+                    return findResult(match, bonus);
                 })
                 .toList();
     }
