@@ -2,8 +2,8 @@ package lotto.utils;
 
 import java.util.regex.Pattern;
 
-import static lotto.utils.ErrorMessage.EMPTY_INPUT_ERROR;
-import static lotto.utils.ErrorMessage.NUMBER_FORMAT_ERROR;
+import static lotto.domain.Lotto.LOTTO_NUM_COUNT;
+import static lotto.utils.ErrorMessage.*;
 
 public class Validator {
 
@@ -18,6 +18,12 @@ public class Validator {
     public static void validateNumberFormat(String userInput) {
         if (!NUMBER_PATTERN.matcher(userInput).matches()) {
             throw new IllegalArgumentException(NUMBER_FORMAT_ERROR.getMessage());
+        }
+    }
+
+    public static void validateParsing(String[] userInput) {
+        if (userInput.length != LOTTO_NUM_COUNT) {
+            throw new IllegalArgumentException(LOTTO_NUM_COUNT_ERROR.getMessage());
         }
     }
 }
