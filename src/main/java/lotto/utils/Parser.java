@@ -1,6 +1,6 @@
 package lotto.utils;
 
-public class Parser {
+public final class Parser {
 
     private static final String DELIMITER = ",";
 

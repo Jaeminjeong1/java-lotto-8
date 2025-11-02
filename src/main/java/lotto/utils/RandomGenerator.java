@@ -4,7 +4,7 @@ import java.util.List;
 
 import static camp.nextstep.edu.missionutils.Randoms.pickUniqueNumbersInRange;
 
-public class RandomGenerator {
+public final class RandomGenerator {
 
     private static final int MIN_RANDOM_NUM = 1;
     private static final int MAX_RANDOM_NUM = 45;
