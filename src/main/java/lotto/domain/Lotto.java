@@ -47,6 +47,12 @@ public class Lotto {
                 });
     }
 
+    public int matchCountWith(Lotto winnerLotto) {
+        return (int) numbers.stream()
+                .filter(winnerLotto.numbers::contains)
+                .count();
+    }
+
     public LottoDto toDto() {
         return new LottoDto(List.copyOf(numbers));
     }
