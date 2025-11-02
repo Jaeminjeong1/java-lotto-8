@@ -9,6 +9,7 @@ import java.util.Map;
 
 public class OutputView {
 
+    private static final String LOTTO_BUY_MESSAGE = "개를 구매했습니다.";
     private static final String WINNING_STATISTICS = "\n당첨 통계";
     private static final String LINING = "---";
     private static final String STATISTICS_RESULT = "%d개 일치%s (%,d원) - %d개%n";
@@ -24,10 +25,12 @@ public class OutputView {
     }
 
     public void printLottos(List<LottoDto> lottos) {
-        System.out.println(lottos.size() + "개를 구매했습니다.");
+        System.out.println(lottos.size() + LOTTO_BUY_MESSAGE);
 
         for (LottoDto dto : lottos) {
-            System.out.println(dto.sorted());
+            System.out.println(dto.numbers().stream()
+                    .sorted()
+                    .toList());
         }
 
         System.out.println();
@@ -38,9 +41,10 @@ public class OutputView {
         printRank(statistics);
     }
 
+    // ordinary 수정해야함.
     private static void printRank(Map<Result, Long> statistics) {
         Arrays.stream(Result.values())
-                .filter(result -> result != Result.MISS) // 꽝 제외
+                .filter(result -> result != Result.MISS)
                 .forEach(result -> {
                     long count = statistics.getOrDefault(result, 0L);
                     String bonusMessage = "";
