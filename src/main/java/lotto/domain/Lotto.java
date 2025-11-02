@@ -2,13 +2,15 @@ package lotto.domain;
 
 import lotto.dto.LottoDto;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import static lotto.utils.ErrorMessage.*;
 
 public class Lotto {
 
-    private static final int LOTTO_NUM_COUNT = 6;
+    public static final int LOTTO_NUM_COUNT = 6;
     private static final int LOTTO_MIN_NUMBER = 1;
     private static final int LOTTO_MAX_NUMBER = 45;
 
