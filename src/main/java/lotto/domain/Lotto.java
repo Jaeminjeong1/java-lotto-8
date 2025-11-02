@@ -48,7 +48,7 @@ public class Lotto {
     }
 
     public LottoDto toDto() {
-        return new LottoDto(List.copyOf(numbers)); // 불변 복사본 전달
+        return new LottoDto(List.copyOf(numbers));
     }
 
 }

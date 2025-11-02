@@ -77,7 +77,7 @@ public class LottoService {
 
     public double calculateProfitRate(Map<Result, Long> statistics, int totalLottoCount) {
         long totalPrize = statistics.entrySet().stream()
-                .mapToLong(entry -> entry.getKey().getPrice() * entry.getValue()) // 상금 × 개수
+                .mapToLong(entry -> entry.getKey().getPrice() * entry.getValue())
                 .sum();
 
         long totalCost = (long) totalLottoCount * LOTTO_PRICE;
