@@ -53,6 +53,10 @@ public class Lotto {
                 .count();
     }
 
+    public boolean contains(int number) {
+        return numbers.contains(number);
+    }
+
     public LottoDto toDto() {
         return new LottoDto(List.copyOf(numbers));
     }
