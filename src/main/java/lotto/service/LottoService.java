@@ -27,7 +27,6 @@ public class LottoService {
 
         for (int i = 0; i < lottoCount; i++) {
             List<Integer> numbers = RandomGenerator.generateRandomNum();
-            Lotto lotto = Lotto.from(numbers);
 
             result.add(new LottoDto(numbers));
         }
