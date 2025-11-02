@@ -4,7 +4,6 @@ import lotto.domain.Lotto;
 import lotto.domain.LottoPrice;
 import lotto.domain.Result;
 import lotto.dto.LottoDto;
-import lotto.utils.Parser;
 import lotto.utils.RandomGenerator;
 
 import java.util.ArrayList;
@@ -18,9 +17,6 @@ import static lotto.utils.ErrorMessage.BONUS_NUM_CONTAINS_ERROR;
 
 public class LottoService {
 
-    public LottoService() {
-    }
-
     public List<LottoDto> generateLottos(long userPrice) {
         List<LottoDto> result = new ArrayList<>();
         long lottoCount = LottoPrice.from(userPrice).getLottoCount();
@@ -33,20 +29,13 @@ public class LottoService {
         return result;
     }
 
-    public LottoDto generateWinnerLotto(String winnerNumbers) {
-        Lotto lotto = Lotto.from(Arrays.stream(Parser.parse(winnerNumbers))
+    public LottoDto generateWinnerLotto(String[] parsedWinnerNumbers) {
+        Lotto lotto = Lotto.from(Arrays.stream(parsedWinnerNumbers)
                 .map(String::trim)
                 .map(Integer::parseInt)
                 .toList());
 
         return lotto.toDto();
-    }
-
-    public int validateBonusNum(LottoDto winnerDto, int bonusNumber) {
-        if (winnerDto.numbers().contains(bonusNumber)) {
-            throw new IllegalArgumentException(BONUS_NUM_CONTAINS_ERROR.getMessage());
-        }
-        return bonusNumber;
     }
 
     public List<Result> findMatchCount(List<LottoDto> lottos, LottoDto winnerLotto, int bonusNum) {
@@ -82,5 +71,12 @@ public class LottoService {
         long totalCost = (long) totalLottoCount * LOTTO_PRICE;
 
         return (double) totalPrize / totalCost * 100;
+    }
+
+    public int validateAndReturnBonusNum(LottoDto winnerDto, int bonusNumber) {
+        if (winnerDto.numbers().contains(bonusNumber)) {
+            throw new IllegalArgumentException(BONUS_NUM_CONTAINS_ERROR.getMessage());
+        }
+        return bonusNumber;
     }
 }

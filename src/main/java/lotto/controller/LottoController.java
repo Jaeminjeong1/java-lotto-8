@@ -3,11 +3,14 @@ package lotto.controller;
 import lotto.domain.Result;
 import lotto.dto.LottoDto;
 import lotto.service.LottoService;
+import lotto.utils.Parser;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
 import java.util.List;
 import java.util.Map;
+
+import static lotto.utils.Validator.validateParsing;
 
 public class LottoController {
 
@@ -48,7 +51,10 @@ public class LottoController {
         while (true) {
             try {
                 String winnerNumbers = inputView.inputWinnerNum();
-                return lottoService.generateWinnerLotto(winnerNumbers);
+                String[] parsedWinnerNumbers = Parser.parse(winnerNumbers);
+
+                validateParsing(parsedWinnerNumbers);
+                return lottoService.generateWinnerLotto(parsedWinnerNumbers);
             } catch (IllegalArgumentException e) {
                 outputView.printErrorMessage(e);
             }
@@ -59,7 +65,7 @@ public class LottoController {
         while (true) {
             try {
                 int bonusNum = inputView.inputBonusNum();
-                return lottoService.validateBonusNum(winnerLotto, bonusNum);
+                return lottoService.validateAndReturnBonusNum(winnerLotto, bonusNum);
             } catch (IllegalArgumentException e) {
                 outputView.printErrorMessage(e);
             }
