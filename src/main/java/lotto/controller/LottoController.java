@@ -44,23 +44,22 @@ public class LottoController {
         }
     }
 
-    private int getBonusNum(LottoDto winnerLotto) {
+    private LottoDto getWinnerLotto() {
         while (true) {
             try {
-                int bonusNum = inputView.inputBonusNum();
-                return lottoService.validateBonusNum(winnerLotto, bonusNum);
+                String winnerNumbers = inputView.inputWinnerNum();
+                return lottoService.generateWinnerLotto(winnerNumbers);
             } catch (IllegalArgumentException e) {
                 outputView.printErrorMessage(e);
             }
         }
     }
 
-    private LottoDto getWinnerLotto() {
+    private int getBonusNum(LottoDto winnerLotto) {
         while (true) {
             try {
-                String winnerNumbers = inputView.inputWinnerNum();
-                LottoDto winnerLotto = lottoService.generateWinnerLotto(winnerNumbers);
-                return winnerLotto;
+                int bonusNum = inputView.inputBonusNum();
+                return lottoService.validateBonusNum(winnerLotto, bonusNum);
             } catch (IllegalArgumentException e) {
                 outputView.printErrorMessage(e);
             }

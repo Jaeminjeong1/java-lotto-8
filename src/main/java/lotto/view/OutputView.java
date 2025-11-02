@@ -16,7 +16,9 @@ public class OutputView {
     private static final String RATE_OF_RETURN_PRINT = "총 수익률은 %.1f%%입니다.%n";
 
 
-    private OutputView() {}
+    private OutputView() {
+    }
+
     public static OutputView create() {
         return new OutputView();
     }

@@ -10,7 +10,7 @@ public class Validator {
     private static final Pattern NUMBER_PATTERN = Pattern.compile("\\d+");
 
     public static void validateEmptyInput(String userInput) {
-        if (userInput == null ||userInput.isBlank()) {
+        if (userInput == null || userInput.isBlank()) {
             throw new IllegalArgumentException(EMPTY_INPUT_ERROR.getMessage());
         }
     }

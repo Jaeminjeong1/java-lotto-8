@@ -10,7 +10,7 @@ public class RandomGenerator {
     private static final int MAX_RANDOM_NUM = 45;
     private static final int RANDOM_NUM_COUNT = 6;
 
-    private RandomGenerator () {
+    private RandomGenerator() {
     }
 
     public static List<Integer> generateRandomNum() {
