@@ -4,6 +4,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.MethodSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
@@ -68,5 +69,16 @@ class LottoTest {
                 Arguments.of(List.of(7, 8, 9, 10, 11, 12), List.of(1, 2, 3, 4, 5, 6), 0),
                 Arguments.of(List.of(1, 2, 3, 4, 5, 6), List.of(1, 2, 3, 4, 5, 6), 6)
         );
+    }
+
+    @DisplayName("보너스 번호 포함 여부를 판단한다")
+    @ParameterizedTest
+    @CsvSource({
+            "10, true",
+            "13, false"
+    })
+    void 보너스_번호_포함_여부를_판단한다(int bonusNumber, boolean expected) {
+        Lotto lotto = Lotto.from(List.of(7, 8, 9, 10, 11, 12));
+        assertThat(lotto.contains(bonusNumber)).isEqualTo(expected);
     }
 }
