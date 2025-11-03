@@ -1,6 +1,8 @@
 package lotto.domain;
 
 
+import java.util.Arrays;
+
 public enum Result {
 
     MISS(0, false, 0),
@@ -18,6 +20,13 @@ public enum Result {
         this.matchCount = matchCount;
         this.bonusMatch = bonusMatch;
         this.price = price;
+    }
+
+    public static Result from(int matchCount, boolean bonusMatch) {
+        return Arrays.stream(Result.values())
+                .filter(r -> r.matchCount == matchCount && r.bonusMatch == bonusMatch)
+                .findFirst()
+                .orElse(MISS);
     }
 
     public int getMatchCount() {
