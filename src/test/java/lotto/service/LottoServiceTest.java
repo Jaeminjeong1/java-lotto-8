@@ -75,4 +75,15 @@ public class LottoServiceTest {
                 Arguments.of(Map.of(Result.FIFTH, 2L), 2, 500.0)
         );
     }
+
+    @DisplayName("보너스 번호가 당첨 번호에 포함되면 예외가 발생한다.")
+    @Test
+    void 보너스_번호_중복_테스트() {
+        LottoDto lottoDto = new LottoDto(List.of(1, 2, 3, 4, 5, 6));
+        int bonusNumber = 6;
+
+        assertThatThrownBy(() -> lottoService.validateAndReturnBonusNum(lottoDto, bonusNumber))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(BONUS_NUM_CONTAINS_ERROR.getMessage());
+    }
 }
