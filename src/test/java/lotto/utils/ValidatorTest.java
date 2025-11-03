@@ -5,8 +5,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.NullSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
-import static lotto.utils.ErrorMessage.EMPTY_INPUT_ERROR;
-import static lotto.utils.ErrorMessage.NUMBER_FORMAT_ERROR;
+import static lotto.utils.ErrorMessage.*;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class ValidatorTest {
@@ -28,5 +27,15 @@ public class ValidatorTest {
         assertThatThrownBy(() -> Validator.validateNumberFormat(input))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(NUMBER_FORMAT_ERROR.getMessage());
+    }
+
+    @DisplayName("배열 길이가 6이 아니면 예외가 발생한다")
+    @ParameterizedTest
+    @ValueSource(ints = {0, 5, 7})
+    void 배열_크기_테스트(int length) {
+        String[] input = new String[length];
+        assertThatThrownBy(() -> Validator.validateParsing(input))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(LOTTO_NUM_COUNT_ERROR.getMessage());
     }
 }
