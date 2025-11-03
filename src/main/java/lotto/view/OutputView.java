@@ -22,7 +22,7 @@ public class OutputView {
     }
 
     public void printLottos(List<LottoDto> lottos) {
-        System.out.println(lottos.size() + LOTTO_BUY_MESSAGE);
+        System.out.println("\n" + lottos.size() + LOTTO_BUY_MESSAGE);
 
         for (LottoDto dto : lottos) {
             System.out.println(dto.numbers().stream()
