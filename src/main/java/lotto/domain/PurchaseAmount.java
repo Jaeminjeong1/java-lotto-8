@@ -3,20 +3,20 @@ package lotto.domain;
 import static lotto.utils.ErrorMessage.PRICE_LACK_ERROR;
 import static lotto.utils.ErrorMessage.PRICE_UNIT_ERROR;
 
-public class LottoPrice {
+public class PurchaseAmount {
 
     public static final int LOTTO_PRICE = 1000;
 
     private final long userPrice;
 
-    private LottoPrice(long userPrice) {
+    private PurchaseAmount(long userPrice) {
         validateMinimumPrice(userPrice);
         validatePriceUnit(userPrice);
         this.userPrice = userPrice;
     }
 
-    public static LottoPrice from(long userPrice) {
-        return new LottoPrice(userPrice);
+    public static PurchaseAmount from(long userPrice) {
+        return new PurchaseAmount(userPrice);
     }
 
     private void validateMinimumPrice(long userPrice) {
