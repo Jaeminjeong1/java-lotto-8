@@ -1,4 +1,6 @@
-package lotto.domain;
+package lotto.view;
+
+import lotto.domain.Result;
 
 public final class ResultFormatter {
 
