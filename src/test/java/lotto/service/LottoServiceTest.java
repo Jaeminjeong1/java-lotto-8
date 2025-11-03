@@ -29,4 +29,13 @@ public class LottoServiceTest {
         assertThat(lottos).hasSize((int) (userPrice / 1000));
     }
 
+    @Test
+    @DisplayName("trim된 정수로 잘 파싱하여 LottoDto로 반환")
+    void 파싱_테스트() {
+        String[] parsed = {" 1", "2 ", " 3 ", "4", "5", "6"};
+        LottoDto winner = lottoService.generateWinnerLotto(parsed);
+
+        assertThat(winner.numbers()).containsExactly(1, 2, 3, 4, 5, 6);
+    }
+
 }
