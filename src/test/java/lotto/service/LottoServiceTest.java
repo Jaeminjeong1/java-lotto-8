@@ -61,4 +61,18 @@ public class LottoServiceTest {
         assertThat(summary.get(Result.FIFTH)).isEqualTo(1L);
         assertThat(summary.get(Result.MISS)).isEqualTo(1L);
     }
+
+    @DisplayName("5등 2개만 당첨된 경우 수익률을 계산한다")
+    @ParameterizedTest
+    @MethodSource("provideFifthOnlyCase")
+    void 수익률_계산_테스트(Map<Result, Long> summary, int totalCount, double expectedRate) {
+        double rate = lottoService.calculateProfitRate(summary, totalCount);
+        assertThat(rate).isEqualTo(expectedRate);
+    }
+
+    private static Stream<Arguments> provideFifthOnlyCase() {
+        return Stream.of(
+                Arguments.of(Map.of(Result.FIFTH, 2L), 2, 500.0)
+        );
+    }
 }
