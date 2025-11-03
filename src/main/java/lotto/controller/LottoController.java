@@ -73,7 +73,7 @@ public class LottoController {
     }
 
     private void printResult(List<LottoDto> lottos, LottoDto winnerLotto, int bonusNum) {
-        List<Result> results = lottoService.findMatchCount(lottos, winnerLotto, bonusNum);
+        List<Result> results = lottoService.calculateResults(lottos, winnerLotto, bonusNum);
         Map<Result, Long> statistics = lottoService.summarizeResults(results);
 
         double profitRate = lottoService.calculateProfitRate(statistics, lottos.size());

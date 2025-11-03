@@ -38,7 +38,7 @@ public class LottoService {
         return lotto.toDto();
     }
 
-    public List<Result> findMatchCount(List<LottoDto> lottos, LottoDto winnerLotto, int bonusNum) {
+    public List<Result> calculateResults(List<LottoDto> lottos, LottoDto winnerLotto, int bonusNum) {
         Lotto winner = Lotto.from(winnerLotto.numbers());
 
         return lottos.stream()
