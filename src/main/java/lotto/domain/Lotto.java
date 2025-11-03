@@ -2,8 +2,6 @@ package lotto.domain;
 
 import lotto.dto.LottoDto;
 
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 import static lotto.utils.ErrorMessage.*;

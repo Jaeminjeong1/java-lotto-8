@@ -3,7 +3,6 @@ package lotto.view;
 import lotto.domain.Result;
 import lotto.dto.LottoDto;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
