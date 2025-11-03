@@ -3,6 +3,7 @@ package lotto.domain;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
@@ -10,6 +11,7 @@ import java.util.List;
 import java.util.stream.Stream;
 
 import static lotto.utils.ErrorMessage.*;
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class LottoTest {
@@ -51,4 +53,20 @@ class LottoTest {
                 .hasMessageContaining(LOTTO_NUM_RANGE_ERROR.getMessage());
     }
 
+    @DisplayName("당첨번호와의 일치 개수를 정확히 계산한다")
+    @ParameterizedTest
+    @MethodSource("provideLottos")
+    void 당첨번호와의_일치_개수를_정확히_계산한다(List<Integer> mineNums, List<Integer> winNums, int expected) {
+        Lotto mine = Lotto.from(mineNums);
+        Lotto win = Lotto.from(winNums);
+        assertThat(mine.matchCountWith(win)).isEqualTo(expected);
+    }
+
+    private static Stream<Arguments> provideLottos() {
+        return Stream.of(
+                Arguments.of(List.of(1, 2, 3, 10, 20, 30), List.of(1, 2, 3, 4, 5, 6), 3),
+                Arguments.of(List.of(7, 8, 9, 10, 11, 12), List.of(1, 2, 3, 4, 5, 6), 0),
+                Arguments.of(List.of(1, 2, 3, 4, 5, 6), List.of(1, 2, 3, 4, 5, 6), 6)
+        );
+    }
 }
