@@ -51,11 +51,9 @@ public class LottoService {
                 .toList();
     }
 
+
     private Result findResult(int matchCount, boolean bonusMatch) {
-        return Arrays.stream(Result.values())
-                .filter(r -> r.getMatchCount() == matchCount && r.isBonusMatch() == bonusMatch)
-                .findFirst()
-                .orElse(Result.MISS);
+        return Result.from(matchCount, bonusMatch);
     }
 
     public Map<Result, Long> summarizeResults(List<Result> results) {
