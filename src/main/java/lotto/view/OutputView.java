@@ -12,8 +12,6 @@ public class OutputView {
     private static final String LOTTO_BUY_MESSAGE = "개를 구매했습니다.";
     private static final String WINNING_STATISTICS = "\n당첨 통계";
     private static final String LINING = "---";
-    private static final String STATISTICS_RESULT = "%d개 일치%s (%,d원) - %d개%n";
-    private static final String BONUS_NOT_MATCHED = ", 보너스 볼 일치";
     private static final String RATE_OF_RETURN_PRINT = "총 수익률은 %.1f%%입니다.%n";
 
 
@@ -41,21 +39,19 @@ public class OutputView {
         printRank(statistics);
     }
 
-    // ordinary 수정해야함.
     private static void printRank(Map<Result, Long> statistics) {
-        Arrays.stream(Result.values())
-                .filter(result -> result != Result.MISS)
-                .forEach(result -> {
-                    long count = statistics.getOrDefault(result, 0L);
-                    String bonusMessage = "";
-                    if (result.isBonusMatch()) bonusMessage = BONUS_NOT_MATCHED;
+        List<Result> ordered = List.of(
+                Result.FIFTH,
+                Result.FOURTH,
+                Result.THIRD,
+                Result.SECOND,
+                Result.FIRST
+        );
 
-                    System.out.printf(STATISTICS_RESULT,
-                            result.getMatchCount(),
-                            bonusMessage,
-                            result.getPrice(),
-                            count);
-                });
+        for (Result result : ordered) {
+            long count = statistics.getOrDefault(result, 0L);
+            System.out.print(ResultFormatter.line(result, count));
+        }
     }
 
     private void printStatisticsStart() {
