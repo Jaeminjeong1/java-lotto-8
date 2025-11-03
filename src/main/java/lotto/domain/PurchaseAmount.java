@@ -31,7 +31,7 @@ public class PurchaseAmount {
         }
     }
 
-    public long getLottoCount() {
+    public long calculateLottoCount() {
         return userPrice / LOTTO_PRICE;
     }
 

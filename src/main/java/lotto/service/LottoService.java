@@ -19,7 +19,7 @@ public class LottoService {
 
     public List<LottoDto> generateLottos(long userPrice) {
         List<LottoDto> result = new ArrayList<>();
-        long lottoCount = PurchaseAmount.from(userPrice).getLottoCount();
+        long lottoCount = PurchaseAmount.from(userPrice).calculateLottoCount();
 
         for (int i = 0; i < lottoCount; i++) {
             List<Integer> numbers = RandomGenerator.generateRandomNum();
