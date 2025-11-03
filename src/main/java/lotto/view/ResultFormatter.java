@@ -11,7 +11,11 @@ public final class ResultFormatter {
     }
 
     public static String line(Result result, long count) {
-        String bonus = result.isBonusMatch() ? BONUS_MATCHED_SUFFIX : "";
+        String bonus = "";
+        if (result.isBonusMatch()) {
+            bonus = BONUS_MATCHED_SUFFIX;
+        }
+
         return String.format(
                 STATISTICS_RESULT,
                 result.getMatchCount(),
