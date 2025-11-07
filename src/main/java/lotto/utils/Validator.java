@@ -1,5 +1,6 @@
 package lotto.utils;
 
+import java.util.List;
 import java.util.regex.Pattern;
 
 import static lotto.domain.Lotto.LOTTO_NUM_COUNT;
@@ -21,8 +22,8 @@ public class Validator {
         }
     }
 
-    public static void validateParsing(String[] userInput) {
-        if (userInput.length != LOTTO_NUM_COUNT) {
+    public static void validateParsing(List<String> userInput) {
+        if (userInput.size() != LOTTO_NUM_COUNT) {
             throw new IllegalArgumentException(LOTTO_NUM_COUNT_ERROR.getMessage());
         }
     }

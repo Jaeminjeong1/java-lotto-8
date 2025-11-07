@@ -7,7 +7,6 @@ import lotto.dto.LottoDto;
 import lotto.utils.RandomGenerator;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -29,8 +28,8 @@ public class LottoService {
         return result;
     }
 
-    public LottoDto generateWinnerLotto(String[] parsedWinnerNumbers) {
-        Lotto lotto = Lotto.from(Arrays.stream(parsedWinnerNumbers)
+    public LottoDto generateWinnerLotto(List<String> parsedWinnerNumbers) {
+        Lotto lotto = Lotto.from(parsedWinnerNumbers.stream()
                 .map(String::trim)
                 .map(Integer::parseInt)
                 .toList());

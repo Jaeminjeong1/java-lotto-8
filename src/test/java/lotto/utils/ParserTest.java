@@ -3,6 +3,8 @@ package lotto.utils;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.util.List;
+
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class ParserTest {
@@ -12,7 +14,7 @@ public class ParserTest {
     void 공백_포함_파싱_테스트() {
         String input = "1, ,3,4,5,6";
 
-        String[] result = Parser.parse(input);
+        List<String> result = Parser.parse(input);
 
         assertThat(result).containsExactly("1", " ", "3", "4", "5", "6");
     }
@@ -22,7 +24,7 @@ public class ParserTest {
     void 파싱_테스트() {
         String input = "1,,3,4,5,6,";
 
-        String[] result = Parser.parse(input);
+        List<String> result = Parser.parse(input);
 
         assertThat(result).containsExactly("1", "", "3", "4", "5", "6", "");
     }

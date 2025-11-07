@@ -5,6 +5,9 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.NullSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static lotto.utils.ErrorMessage.*;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
@@ -33,7 +36,7 @@ public class ValidatorTest {
     @ParameterizedTest
     @ValueSource(ints = {0, 5, 7})
     void 배열_크기_테스트(int length) {
-        String[] input = new String[length];
+        List<String> input = new ArrayList<>(length);
         assertThatThrownBy(() -> Validator.validateParsing(input))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(LOTTO_NUM_COUNT_ERROR.getMessage());

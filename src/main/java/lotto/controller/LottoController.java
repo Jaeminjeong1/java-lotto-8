@@ -51,7 +51,7 @@ public class LottoController {
         while (true) {
             try {
                 String winnerNumbers = inputView.inputWinnerNum();
-                String[] parsedWinnerNumbers = Parser.parse(winnerNumbers);
+                List<String> parsedWinnerNumbers = Parser.parse(winnerNumbers);
 
                 validateParsing(parsedWinnerNumbers);
                 return lottoService.generateWinnerLotto(parsedWinnerNumbers);
