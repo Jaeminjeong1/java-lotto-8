@@ -12,6 +12,6 @@ public class AppConfig {
     }
 
     public static LottoController createController() {
-        return new LottoController(InputView.create(), OutputView.create(), createService());
+        return new LottoController(InputView.Companion.create(), OutputView.create(), createService());
     }
 }
