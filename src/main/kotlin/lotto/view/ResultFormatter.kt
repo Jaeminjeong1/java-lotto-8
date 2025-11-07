@@ -9,7 +9,7 @@ object ResultFormatter {
 
     fun line(result: Result, count: Long): String {
         var bonus = ""
-        if (result.isBonusMatch) {
+        if (result.bonusMatch) {
             bonus = BONUS_MATCHED_SUFFIX
         }
         return String.format(
