@@ -1,6 +1,6 @@
-package lotto.utils;
+package lotto.utils
 
-public enum ErrorMessage {
+enum class ErrorMessage(private val message: String) {
 
     EMPTY_INPUT_ERROR("입력이 비어있습니다. 다시 입력하세요."),
     NUMBER_FORMAT_ERROR("정수만 입력 가능합니다. 다시 입력하세요."),
@@ -11,15 +11,10 @@ public enum ErrorMessage {
     BONUS_NUM_CONTAINS_ERROR("이미 당첨 번호에 포함되어 있습니다. 다시 입력하세요."),
     DUPLICATE_ERROR_MESSAGE("로또 번호는 중복될 수 없습니다. 다시 입력하세요.");
 
-
-    private final static String PREFIX = "[ERROR] ";
-    private final String message;
-
-    ErrorMessage(String message) {
-        this.message = PREFIX + message;
+    companion object {
+        private const val PREFIX = "[ERROR] "
     }
 
-    public String getMessage() {
-        return message;
-    }
+    fun getMessage(): String = PREFIX + message
+
 }
