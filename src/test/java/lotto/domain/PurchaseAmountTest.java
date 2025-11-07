@@ -33,7 +33,7 @@ public class PurchaseAmountTest {
     @ValueSource(ints = { 1000, 8000, 15000 })
     void 로또_개수_계산_검증(int input) {
         PurchaseAmount amount = PurchaseAmount.from(input);
-        assertThat(amount.getLottoCount()).isEqualTo(input / 1000);
+        assertThat(amount.calculateLottoCount()).isEqualTo(input / 1000);
     }
 
 }
