@@ -1,6 +1,6 @@
 package lotto.utils
 
-import lotto.domain.Lotto.LOTTO_NUM_COUNT
+import lotto.domain.Lotto.Companion.LOTTO_NUM_COUNT
 import java.util.regex.Pattern
 import lotto.utils.ErrorMessage.*
 
