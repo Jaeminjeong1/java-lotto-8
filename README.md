@@ -94,39 +94,39 @@
 
 ## 패키지 구조
 ```
-src/main/java/lotto
+src/main/kotlin/lotto
 ┣ view
-┃ ┣ InputView.java
-┃ ┣ OutputView.java
-┃ ┗ ResultFormatter.java
+┃ ┣ InputView.kt
+┃ ┣ OutputView.kt
+┃ ┗ ResultFormatter.kt
 ┣ config
-┃ ┗ AppConfig.java
+┃ ┗ AppConfig.kt
 ┣ controller
-┃ ┗ LottoController.java
+┃ ┗ LottoController.kt
 ┣ service
-┃ ┗ LottoService.java
+┃ ┗ LottoService.kt
 ┣ domain
-┃ ┣ Lotto.java
-┃ ┣ PurchaseAmount.java
-┃ ┗ Result.java
+┃ ┣ Lotto.kt
+┃ ┣ PurchaseAmount.kt
+┃ ┗ Result.kt
 ┣ utils
-┃ ┣ Parser.java
-┃ ┣ RandomGenerator.java
-┃ ┣ Validator.java
-┃ ┗ ErrorMessage.java
+┃ ┣ Parser.kt
+┃ ┣ RandomGenerator.kt
+┃ ┣ Validator.kt
+┃ ┗ ErrorMessage.kt
 ┗ dto
-┗ LottoDto.java
+┗ LottoDto.kt
 
-src/test/java/lotto
+src/test/kotlin/lotto
 ┣ domain
-┃ ┣ LottoTest.java
-┃ ┣ PurchaseAmountTest.java
-┃ ┗ ResultTest.java
+┃ ┣ LottoTest.kt
+┃ ┣ PurchaseAmountTest.kt
+┃ ┗ ResultTest.kt
 ┣ service
-┃ ┗ LottoServiceTest.java
+┃ ┗ LottoServiceTest.kt
 ┣ utils
-┃ ┣ ParserTest.java
-┗ ┗ ValidatorTest.java
+┃ ┣ ParserTest.kt
+┗ ┗ ValidatorTest.kt
 ```
 
 ### 외부 라이브러리
