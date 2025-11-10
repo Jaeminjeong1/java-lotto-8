@@ -13,7 +13,6 @@ enum class Result(
     FIRST(6, false, 2_000_000_000);
 
     companion object {
-        @JvmStatic
         fun from(matchCount: Int, bonusMatch: Boolean): Result =
             entries.firstOrNull { it.matchCount == matchCount && it.bonusMatch == bonusMatch } ?: MISS
     }

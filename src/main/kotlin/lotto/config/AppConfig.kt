@@ -7,7 +7,7 @@ import lotto.view.OutputView
 
 object AppConfig {
 
-    fun createService(): LottoService =
+    private fun createService(): LottoService =
         LottoService()
 
     fun createController(): LottoController =

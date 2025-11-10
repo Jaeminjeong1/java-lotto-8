@@ -8,7 +8,6 @@ object RandomGenerator {
     private const val MAX_RANDOM_NUM: Int = 45;
     private const val RANDOM_NUM_COUNT: Int = 6;
 
-    @JvmStatic
     fun generateRandomNum(): List<Int> =
         pickUniqueNumbersInRange(MIN_RANDOM_NUM, MAX_RANDOM_NUM, RANDOM_NUM_COUNT).toList()
 }

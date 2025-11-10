@@ -18,7 +18,6 @@ class Lotto private constructor(
         private const val LOTTO_MIN_NUMBER: Int = 1
         private const val LOTTO_MAX_NUMBER: Int = 45
 
-        @JvmStatic
         fun from(numbers: List<Int>): Lotto = Lotto(numbers)
     }
 

@@ -14,7 +14,6 @@ data class PurchaseAmount private constructor(
     companion object {
         const val LOTTO_PRICE: Int = 1000
 
-        @JvmStatic
         fun from(userPrice: Long): PurchaseAmount = PurchaseAmount(userPrice)
 
         private fun validateMinimumPrice(userPrice: Long) {
