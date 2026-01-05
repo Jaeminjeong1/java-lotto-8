@@ -1,6 +1,8 @@
 package lotto.controller;
 
+import lotto.domain.WinnerLotto;
 import lotto.dto.LottoDto;
+import lotto.dto.WinnerLottoDto;
 import lotto.service.LottoService;
 import lotto.util.Retry;
 import lotto.view.InputView;
@@ -19,11 +21,12 @@ public class LottoController {
     public void start() {
         // 구입 금액 입력 받기
         List<LottoDto> inputLottos = inputPurchaseAmountAndGenerateLotto();
-        // 생성된 로또 출력
 
         // 구입 금액에 맞게 로또 생성
         // 당첨번호 입력받기
+        LottoDto winnerLotto = inputWinnerLotto();
         // 보너스 번호 입력받기
+        WinnerLottoDto finalWinnerLotto = inputBonusNumber(winnerLotto);
         // 결과 출력
     }
 
@@ -36,4 +39,19 @@ public class LottoController {
             return lottos;
         });
     }
+
+    private LottoDto inputWinnerLotto() {
+        return Retry.retryUntilSuccess(() -> {
+            List<Integer> input = InputView.inputWinnerLotto();
+            return lottoService.generateWinnerLotto(input);
+        });
+    }
+
+    private WinnerLottoDto inputBonusNumber(LottoDto winnerLotto) {
+        return Retry.retryUntilSuccess(() -> {
+           int bonusNumber = InputView.inputBonusNumber();
+            return lottoService.addBonusNum(winnerLotto, bonusNumber);
+        });
+    }
+
 }

@@ -24,7 +24,7 @@ public class Validator {
     // 숫자 형식 검증
     public static void validateNumberFormat(String input) {
         if (!NUMBER_PATTERN.matcher(input).matches()) {
-            throw new IllegalArgumentException(NUMBER_FORMAT_ERROR.getMessage());
+            throw new NumberFormatException(NUMBER_FORMAT_ERROR.getMessage());
         }
     }
 

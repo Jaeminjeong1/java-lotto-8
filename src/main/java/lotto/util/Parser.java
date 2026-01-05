@@ -1,7 +1,9 @@
 package lotto.util;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Parser {
 
@@ -10,15 +12,20 @@ public class Parser {
     private Parser() {
     }
 
-    public static List<String> parse(String input) {
+
+    // List<Integer>로 반환
+    public static List<Integer> parse(String input) {
         validateInput(input);
 
         List<String> tokens = Arrays.asList(input.trim().split(DELIMITER));
 
         validateTokens(tokens);
+        validateTokensNumberFormat(tokens);
 
-        return tokens;
+        return convertToIntegers(tokens);
     }
+
+
 
     private static void validateInput(String input) {
         if (input == null) {
@@ -39,5 +46,23 @@ public class Parser {
             }
         }
     }
+
+    private static void validateTokensNumberFormat(List<String> tokens) {
+        for (String token : tokens) {
+            Validator.validateNumberFormat(token);
+        }
+    }
+
+    private static List<Integer> convertToIntegers(List<String> tokens) {
+        List<Integer> numbers = new ArrayList<>();
+
+        for (String token : tokens) {
+            numbers.add(Integer.parseInt(token));
+        }
+
+        return numbers;
+    }
+
+
 }
 
