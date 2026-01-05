@@ -10,7 +10,7 @@ public class InputView {
 
     private static final String BUY_INPUT = "구입금액을 입력해 주세요.";
     private static final String WINNER_LOTTO_INPUT = "당첨 번호를 입력해 주세요.";
-    private static final String BONUS_NUM_INPUT = "보너스 번호를 입력해 주세요.";
+    private static final String BONUS_NUM_INPUT = "\n보너스 번호를 입력해 주세요.";
 
     private InputView() {
     }

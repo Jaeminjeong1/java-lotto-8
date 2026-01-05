@@ -1,10 +1,8 @@
 package lotto.domain;
 
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
-import static lotto.util.ErrorMessage.LOTTO_COUNT_ERROR;
-import static lotto.util.ErrorMessage.LOTTO_RANGE_ERROR;
+import static lotto.util.ErrorMessage.*;
 
 public class Lotto {
 
@@ -17,8 +15,10 @@ public class Lotto {
     private Lotto(List<Integer> numbers) {
         validateRange(numbers);
         validateLottoCount(numbers);
-        sortNumbers(numbers);
-        this.numbers = List.copyOf(numbers);
+        validateDuplicate(numbers);
+        this.numbers = List.copyOf(numbers.stream()
+                .sorted()
+                .toList());
     }
 
     public static Lotto from(List<Integer> numbers) {
@@ -39,12 +39,31 @@ public class Lotto {
         }
     }
 
-    private void sortNumbers(List<Integer> numbers) {
-        Collections.sort(numbers);
+    private void validateDuplicate(List<Integer> numbers) {
+        Set<Integer> uniqueNumbers = new HashSet<>(numbers);
+
+        // 원본 리스트 크기와 Set 크기를 비교합니다.
+        if (uniqueNumbers.size() != numbers.size()) {
+            throw new IllegalArgumentException(DUPLICATE_ERROR_MESSAGE.getMessage());
+        }
     }
 
     public List<Integer> getNumbers() {
         return List.copyOf(numbers);
+    }
+
+    public int matchCount(List<Integer> winnerLotto) {
+        int count = 0;
+
+        for (Integer number : numbers) {
+            if (winnerLotto.contains(number)) count++;
+        }
+
+        return count;
+    }
+
+    public boolean isBonusMatch(int bonusNumber) {
+        return numbers.contains(bonusNumber);
     }
 
     // TODO: 추가 기능 구현

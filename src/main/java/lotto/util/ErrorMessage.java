@@ -7,6 +7,7 @@ public enum ErrorMessage {
     NUMBER_FORMAT_ERROR("숫자형식이 아닙니다. 다시 입력해 주세요."),
     LOTTO_COUNT_ERROR("로또 번호는 6개여야 합니다."),
     LOTTO_RANGE_ERROR("로또 번호는 1~45입니다."),
+    DUPLICATE_ERROR_MESSAGE("로또 번호에 중복이 있습니다."),
     DUPLICATE_BONUS_NUM_ERROR("보너스 넘버와 당첨번호가 중복됩니다."),
     UNIT_ERROR("구입가격은 1000원 단위여야합니다.");
 
