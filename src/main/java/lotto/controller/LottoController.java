@@ -1,7 +1,6 @@
 package lotto.controller;
 
 import lotto.domain.Result;
-import lotto.domain.WinnerLotto;
 import lotto.dto.LottoDto;
 import lotto.dto.WinnerLottoDto;
 import lotto.service.LottoService;

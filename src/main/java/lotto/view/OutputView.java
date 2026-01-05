@@ -41,7 +41,7 @@ public class OutputView {
 
         for (Result result : Result.values()) {
             if (result.equals(Result.MISS)) continue;
-            if (result.equals(Result.SECOND)) {
+            if (result.isBonusMatch()) {
                 System.out.printf(STATISTICS_BONUS, result.getMatchCount(), result.getPrize(), statistics.get(result));
                 continue;
             }
