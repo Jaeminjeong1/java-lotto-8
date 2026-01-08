@@ -1,6 +1,7 @@
 package lotto.controller;
 
 import lotto.service.LottoService;
+import lotto.view.InputView;
 
 public class LottoController {
 
@@ -12,6 +13,7 @@ public class LottoController {
 
     public void start() {
         // 구입금액을 입력받는다
+        int money = InputView.inputMoney();
 
         // 로또를 생성하여 출력한다.
 
