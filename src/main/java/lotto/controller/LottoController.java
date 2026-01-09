@@ -3,6 +3,7 @@ package lotto.controller;
 import lotto.domain.Lotto;
 import lotto.domain.Prize;
 import lotto.domain.Winner;
+import lotto.dto.LottoDto;
 import lotto.service.LottoService;
 import lotto.util.Retry;
 import lotto.view.InputView;
@@ -38,7 +39,7 @@ public class LottoController {
         return Retry.retryUntilSuccess(() -> {
             int money = InputView.inputMoney();
             List<Lotto> lottos = lottoService.generateLottos(money);
-            OutputView.printLottos(lottos);
+            OutputView.printLottos(LottoDto.of(lottos));
             return lottos;
         });
     }

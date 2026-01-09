@@ -2,8 +2,7 @@ package lotto.util;
 
 import java.util.regex.Pattern;
 
-import static lotto.util.ErrorMessage.INPUT_ERROR;
-import static lotto.util.ErrorMessage.NUMBER_FORMAT_ERROR;
+import static lotto.util.ErrorMessage.*;
 
 public class Validator {
 
@@ -31,14 +30,14 @@ public class Validator {
     // 양수인지 검증
     public static void validatePositive(int value) {
         if (value <= 0) {
-            throw new IllegalArgumentException("ERROR_MESSAGE");
+            throw new IllegalArgumentException(POSITIVE_NUMBER_ERROR.getMessage());
         }
     }
 
     // 값 범위 검증
     public static void validateRange(int value) {
         if (value < MIN_NUM || value > MAX_NUM) {
-            throw new IllegalArgumentException("ERROR_MESSAGE");
+            throw new IllegalArgumentException(RANGE_ERROR.getMessage());
         }
     }
 }

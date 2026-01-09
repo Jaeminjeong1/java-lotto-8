@@ -2,6 +2,7 @@ package lotto.view;
 
 import lotto.domain.Lotto;
 import lotto.domain.Prize;
+import lotto.dto.LottoDto;
 
 import java.util.EnumMap;
 import java.util.List;
@@ -23,11 +24,11 @@ public class OutputView {
         System.out.println(e.getMessage());
     }
 
-    public static void printLottos(List<Lotto> lottos) {
+    public static void printLottos(List<LottoDto> lottos) {
 
         System.out.printf(PRINT_LOTTO_COUNT, lottos.size());
-        for (Lotto lotto : lottos) {
-            System.out.println(lotto.getNumbers());
+        for (LottoDto lotto : lottos) {
+            System.out.println(lotto.numbers());
         }
     }
 
