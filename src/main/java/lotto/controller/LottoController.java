@@ -1,13 +1,16 @@
 package lotto.controller;
 
 import lotto.domain.Lotto;
+import lotto.domain.Prize;
 import lotto.domain.Winner;
 import lotto.service.LottoService;
 import lotto.util.Retry;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
+import java.util.EnumMap;
 import java.util.List;
+import java.util.Map;
 
 public class LottoController {
 
@@ -28,7 +31,7 @@ public class LottoController {
         Winner winner = inputBonusNum(winnerLotto);
 
         // 당첨 통계를 낸 후 출력한다.
-
+        calculateAndPrintResult(lottos, winner);
     }
 
     private List<Lotto> inputMoney() {
@@ -52,6 +55,12 @@ public class LottoController {
             int bonus = InputView.inputBonusNum();
             return lottoService.generateWinnerLotto(winnerLotto, bonus);
         });
+    }
+
+    private void calculateAndPrintResult(List<Lotto> lottos, Winner winner) {
+        EnumMap<Prize, Integer> result = lottoService.calculateResult(lottos, winner);
+        double revenue = lottoService.calculateRevenue(result, lottos.size());
+        OutputView.printResult(result, revenue);
     }
 
 }
