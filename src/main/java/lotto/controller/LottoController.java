@@ -1,7 +1,12 @@
 package lotto.controller;
 
+import lotto.domain.Lotto;
 import lotto.service.LottoService;
+import lotto.util.Retry;
 import lotto.view.InputView;
+import lotto.view.OutputView;
+
+import java.util.List;
 
 public class LottoController {
 
@@ -13,7 +18,7 @@ public class LottoController {
 
     public void start() {
         // 구입금액을 입력받는다
-        int money = InputView.inputMoney();
+        inputMoney();
 
         // 로또를 생성하여 출력한다.
 
@@ -23,5 +28,13 @@ public class LottoController {
 
         // 당첨 통계를 낸 후 출력한다.
 
+    }
+
+    private void inputMoney() {
+        Retry.retryUntilSuccess(() -> {
+            int money = InputView.inputMoney();
+            List<Lotto> lottos = lottoService.generateLottos(money);
+            OutputView.printLottos(lottos);
+        });
     }
 }
