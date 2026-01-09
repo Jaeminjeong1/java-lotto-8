@@ -1,10 +1,11 @@
 package lotto.domain;
 
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
-import static lotto.util.ErrorMessage.LOTTO_COUNT_ERROR;
-import static lotto.util.ErrorMessage.LOTTO_NUMBER_ERROR;
+import static lotto.util.ErrorMessage.*;
 
 public class Lotto {
 
@@ -17,7 +18,7 @@ public class Lotto {
     private Lotto(List<Integer> numbers) {
         validateLottoCount(numbers);
         validateLottoNumRange(numbers);
-
+        validateDuplicate(numbers);
         this.numbers = List.copyOf(numbers.stream()
                 .sorted()
                 .toList());
@@ -38,6 +39,14 @@ public class Lotto {
             if (number > MAX_LOTTO_NUM || number < MIN_LOTTO_NUM) {
                 throw new IllegalArgumentException(LOTTO_NUMBER_ERROR.getMessage());
             }
+        }
+    }
+
+    private void validateDuplicate(List<Integer> numbers) {
+        Set<Integer> set = new HashSet<>(numbers);
+
+        if (set.size() != numbers.size()) {
+            throw new IllegalArgumentException(NUM_DUPLICATE_ERROR.getMessage());
         }
     }
 

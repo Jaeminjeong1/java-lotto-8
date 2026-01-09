@@ -7,7 +7,8 @@ public enum ErrorMessage {
     NUMBER_FORMAT_ERROR("숫자형식이 아닙니다. 다시 입력해 주세요."),
     MONEY_ERROR("구입 금액은 1000원 단위여야 합니다."),
     LOTTO_NUMBER_ERROR("로또 번호는 1부터 45 사이의 숫자여야 합니다."),
-    LOTTO_COUNT_ERROR("[ERROR] 로또 번호는 6개여야 합니다.")
+    LOTTO_COUNT_ERROR("로또 번호는 6개여야 합니다."),
+    NUM_DUPLICATE_ERROR("로또 번호가 중복됩니다.")
     ;
 
     private final static String PREFIX = "[ERROR] ";

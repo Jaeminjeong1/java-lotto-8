@@ -9,7 +9,7 @@ public class Validator {
 
     private static final Pattern NUMBER_PATTERN = Pattern.compile("^\\d+$");
     private static final int MIN_NUM = 1; // 수정
-    private static final int MAX_NUM = 10; // 수정
+    private static final int MAX_NUM = 45; // 수정
 
     private Validator() {
     }
